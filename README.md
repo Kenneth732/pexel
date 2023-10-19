@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
+import Logo from '../../Assets/logo3-removebg-preview.png';
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-## Available Scripts
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
-In the project directory, you can run:
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 700) {
+        setMenuOpen(false); // Close the menu if the screen size is larger than 700px
+      }
+    };
 
-### `npm start`
+    window.addEventListener('resize', handleResize);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  return (
+    <div>
+      <header>
+        <div className="container">
+          <nav>
+            <img src={Logo} alt="logo" className='logo' />
+            <i
+              className={`fas ${menuOpen ? 'fa-times-circle' : 'fa-bars'} menu-icon`}
+              onClick={toggleMenu}
+            ></i>
+            <ul className={menuOpen ? 'open' : ''}>
+              <li><a href=""><span className='space'>Explore</span> <i className="fas fa-chevron-circle-down"></i></a></li>
+              <li><a href="">License</a></li>
+              <li><a href="">Bell</a></li>
+              <li>
+                <a href="">
+                  <span className='space'><i className="fas fa-user"></i></span>
+                  <i className="fas fa-chevron-circle-down"></i>
+                </a>
+              </li>
+              <a href="" className='btn-upload'>Upload</a>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+  );
+}
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default Navbar;
