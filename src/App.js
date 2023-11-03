@@ -49,12 +49,14 @@ function App() {
             {/* <i className='small' class="fas fa-times-circle menu-close"></i> */}
           </ul>
         </nav>
-      </header>
 
-      <header>
         <div className="content">
-          <h1>The best free stock photos shared by creators.</h1>
+          <h1>The best free stock photos, royalty free <br /> images & videos shared by creators.</h1>
           <form onSubmit={handleFormSubmit}>
+            <select className='select_photo_video'>
+              <option value="sunny"><span><i class="fas fa-images"></i></span> Photo</option>
+              <option value="rainy"><span><i class="fas fa-film-alt"></i></span> Video</option>
+            </select>
             <input
               type="text"
               placeholder="Search for free photos"
