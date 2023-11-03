@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-function Home() {
+function Home({ searchResults }) {
+    // console.lo(searchResults);
   return (
-    <div>Home</div>
-  )
+    <div>
+      {searchResults.map((photo) => (
+        <img key={photo.id} src={photo.src.medium} alt={photo.photographer} />
+      ))}
+    </div>
+  );
 }
 
-export default Home
+export default Home;

@@ -1,68 +1,90 @@
-
-
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Logo from '../../Assets/logo3-removebg-preview.png'
-
+import Logo from '.././'
 function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth > 700) {
-                setMenuOpen(false); // Close the menu if the screen size is larger than 700px
-            }
-        };
 
-        window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-    return (
-        <div>
-            <header>
-                <div className="container">
-                    <nav className={menuOpen ? 'open' : ''}>
-                        <img src={Logo} alt="logo" className='logo' />
-                        <ul className={menuOpen ? 'open' : ''}>
-                            <li><a href=""><span className='space'>Explore</span> <i class="fas fa-chevron-circle-down"></i></a></li>
-                            <li><a href="">Licence</a></li>
-                            <li><a href="">bell</a></li>
-                            <li><a href=""> <span className='space'><i class="fas fa-user"></i></span> <i class="fas fa-chevron-circle-down"></i></a></li>
-                            <a href="" className='btn-upload'>Upload</a>
-                            {/* <i className='small' class="fas fa-times-circle menu-close"></i> */}
-                        </ul>
-                        <i
-                            className={`fas ${menuOpen ? 'fa-times-circle' : 'fa-bars'} menu-icon`}
-                            onClick={toggleMenu}
-                        ></i>
-                    </nav>
-                </div>
+  return (
+    <div>
+      <div>
+      <nav className='pc'>
+        <img src="https://wavvy-next-obfuscated-preview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-dark.d32faf19.png&w=360&q=75" className='logo' alt="" />
+          {/* <div className="menu" onClick={toggleMenu}>
+            <i className={`fas fa-bars ${menuActive ? 'active' : ''}`}></i>
+          </div> */}
+          {/* <ul className={menuActive ? 'active' : ''}> */}
+          <ul>
+            <Link to="/" className='li'>
+              <a href="">Home</a>
+            </Link>
 
-                <div className="content">
-                <form>
-                    <select id="weather">
-                        <option value="photo"><span><i class="fas fa-image"></i></span>Photo</option>
-                        <option value="video"><span><i class="fas fa-file-video"></i></span>Video</option>
-                    </select>
-                    <input type="text" placeholder='Search for free photos' />
-                    <i class="fas fa-search"></i>
-                </form>
-                </div>
-            </header>
-        </div>
-    )
+            <Link to="/service" className='li'>
+              <a href="">Services</a>
+            </Link>
+
+            <Link to="/about" className='li'>
+              <a href="">About</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="">Work</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="">Case student</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="" className='btn-form'>Let's talk</a>
+            </Link>
+          </ul>
+        </nav>
+
+        {/* mobile */}
+        <nav className='mobile'>
+          <img src="https://wavvy-next-obfuscated-preview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-icon.5363164c.png&w=256&q=75" alt="" className="small_logo" />
+          <div className="menu" onClick={toggleMenu}>
+            <i className={`fas fa-bars ${menuActive ? 'active' : ''}`}></i>
+          </div>
+          <ul className={menuActive ? 'active' : ''}>
+            <Link to="/" className='li'>
+              <a href="">Home</a>
+            </Link>
+
+            <Link to="/service" className='li'>
+              <a href="">About</a>
+            </Link>
+
+            <Link to="/about" className='li'>
+              <a href="">Pricing</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="">Contact</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="">Pages</a>
+            </Link>
+
+            <Link to="/" className='li'>
+              <a href="" className='btn'>Let's talk</a>
+            </Link>
+          </ul>
+          {/* <div className="menu" onClick={toggleMenu}>
+            <i className={`fas fa-bars ${menuActive ? 'active' : ''}`}></i>
+          </div> */}
+        </nav>
+      </div>
+    </div>
+  )
 }
 
 export default Navbar
-
-
-
-
-
