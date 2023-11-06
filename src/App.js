@@ -109,7 +109,6 @@ function App() {
             <li><a href="">bell</a></li>
             <li><a href=""> <span className='space'> <i class="fas fa-user-circle"></i> </span> <i class="fas fa-chevron-circle-down"></i></a></li>
             <a href="" className='btn-upload'>Upload</a>
-            {/* <i className='small' class="fas fa-times-circle menu-close"></i> */}
           </ul>
         </nav>
 
@@ -120,9 +119,6 @@ function App() {
               <i className={`fas fa-bars ${menuActive ? 'active' : ''}`}></i>
             </div>
             <ul className={menuActive ? 'active' : ''}>
-              {/* <li className='mobile_link'><a >Home</a></li>
-              <li className='mobile_link'><a >Licence</a></li>
-              <a href="" className='btn-upload'>Upload</a> */}
             </ul>
           </nav>
         </div>
