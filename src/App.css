@@ -29,6 +29,7 @@
 
 .logo {
   width: 90px;
+  border-radius: 100px;
 }
 
 .btn-upload {
@@ -47,6 +48,69 @@
 
 .fa-user-circle {
   font-size: 30px;
+}
+
+.phone_media_size {}
+
+.fa-bars, .mobile_logo {
+  display: none;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .nav-menu_phone{
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+  }
+  .fa-bars {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .mobile_logo {
+    width: 60px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  ul.active {
+    display: block;
+    top: 200%;
+    height: 40vh;
+    right: 0%;
+    left: 0;
+    margin-inline: auto;
+    position: absolute;
+    background-color: transparent;
+    backdrop-filter: blur(30px);
+    width: 98%;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: .5s ease-in-out;
+    text-align: center;
+  }
+  ul.active .li{
+    display: block;
+    /* margin: 30px 0; */
+    align-items: center;
+    text-align: center;
+  }
+
+  .mobile_link {
+    width: 100%;
+    border: #000 solid;
+    text-align: center;
+  }
 }
 
 .content  {
@@ -169,8 +233,9 @@ option {
   }
   
   .form {
-    width: 100%;
-    flex-direction: column;
+    width: 98%;
+    height: 70px;
+    margin-inline: auto;
   }
 
   .search_btn i {
@@ -226,20 +291,66 @@ option {
 .image-gallery {
   gap: 15px;
   columns: 5 340px;
+  margin-top: 40px;
 }
 
 .card {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  list-style: none;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 40px;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
 }
 
 .card img {
   width: 100%;
   border-radius: 8px;
+}
+
+
+.card-title {
+  font-size: 17px;
+  color: #eee;
+}
+
+.details {
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to top, rgba(0, 0, 0, .7), transparent);
+  transition: .5s ease-in-out;
+}
+
+.card:hover .details {
+  bottom: 0px;
+}
+
+.details .phtographer {
+  color: #fff;
+}
+
+.btn_download {
+  cursor: pointer;
+  padding: 3px 8px;
+  font-size: 1.1rem;
+  background: #fff;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+}
+
+.details .phtographer i {
+  font-size: 1.4rem;
+  margin-right: 10px;
+}
+
+.details .phtographer span {
+  font-size: 1.05rem;
 }
 
 

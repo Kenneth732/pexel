@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css'
 import Logo from './logo3.png';
 import Masonry from 'masonry-layout';
+import Log from './Assets/logs.jpg'
 
 const backgroundImages = [
   'url(https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)',
@@ -32,6 +33,11 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const apiKey = 'uDsaNoiARkVeopRASv9XPIXAT9zPDZ4OPP4Hf6UypKcwoHfRlOaJJ08G';
   const gridRef = useRef(null);
+  const [menuActive, setMenuActive] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
 
   useEffect(() => {
     if (gridRef.current) {
@@ -59,6 +65,8 @@ function App() {
         });
     }
   }, [searchInput, apiKey]);
+
+  console.log(searchResults.name)
 
   useEffect(() => {
     fetchData();
@@ -94,7 +102,7 @@ function App() {
 
       <header className="header" style={headerStyle} >
         <nav className='nav-menu'>
-          <img src={Logo} alt="logo" className='logo' />
+          <img src={Log} alt="logo" className='logo' />
           <ul >
             <li><a href=""><span className='space'>Explore</span> <i class="fas fa-chevron-circle-down"></i></a></li>
             <li><a href="">Licence</a></li>
@@ -105,13 +113,27 @@ function App() {
           </ul>
         </nav>
 
+        <div className='phone_media_size'>
+          <nav className='nav-menu_phone'>
+          <img src={Log} className='mobile_logo' />
+            <div className="menu" onClick={toggleMenu}>
+              <i className={`fas fa-bars ${menuActive ? 'active' : ''}`}></i>
+            </div>
+            <ul className={menuActive ? 'active' : ''}>
+              {/* <li className='mobile_link'><a >Home</a></li>
+              <li className='mobile_link'><a >Licence</a></li>
+              <a href="" className='btn-upload'>Upload</a> */}
+            </ul>
+          </nav>
+        </div>
+
         <div className="content">
           <h1>The best free stock photos, royalty free <br /> images & videos shared by creators.</h1>
           <form onSubmit={handleFormSubmit} className='form'>
-            <select className='select_photo_video'>
+            {/* <select className='select_photo_video'>
               <option className='options' value="sunny"><span><i class="fas fa-images"></i></span> Photo</option>
               <option className='options' value="rainy"><span><i class="fas fa-film-alt"></i></span> Video</option>
-            </select>
+            </select> */}
             <input
               type="text"
               placeholder="Search for free photos ..."
@@ -127,70 +149,74 @@ function App() {
           {searchResults.map((photo) => (
             <div className="card" key={photo.id}>
               <img src={photo.src.medium} alt={photo.photographer} />
-              <div className="card-info">
-                <h2 className="card-title">{photo.photographer}</h2>
-                <p className="card-photographer">{photo.url}</p>
+              <div className='details'>
+                <div className='phtographer'>
+                  <a href={photo.url}>
+                    <i class="fas fa-camera"></i>
+                  </a>
+                  <span>{photo.photographer}</span>
+                </div>
+                <button download='download' href={photo.src.original} className='btn_download'><i class="fas fa-download"></i></button>
               </div>
-              <a href={photo.url} className="card-link">View</a>
             </div>
           ))}
 
         </div>
       </div>
       <section class="footer">
-      <div class="footer-row">
-        <div class="footer-col">
-          <h4>Info</h4>
-          <ul class="links">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Compressions</a></li>
-            <li><a href="#">Customers</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Collection</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul class="links">
-            <li><a href="#">Free Designs</a></li>
-            <li><a href="#">Latest Designs</a></li>
-            <li><a href="#">Themes</a></li>
-            <li><a href="#">Popular Designs</a></li>
-            <li><a href="#">Art Skills</a></li>
-            <li><a href="#">New Uploads</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul class="links">
-            <li><a href="#">Customer Agreement</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">GDPR</a></li>
-            <li><a href="#">Security</a></li>
-            <li><a href="#">Testimonials</a></li>
-            <li><a href="#">Media Kit</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Newsletter</h4>
-          <p>
-            Subscribe to our newsletter for a weekly dose
-            of news, updates, helpful tips, and
-            exclusive offers.
-          </p>
-          <form action="#">
-            <input type="text" placeholder="Your email" required />
-            <button type="submit">SUBSCRIBE</button>
-          </form>
-          <div className="icons">
-            <i className="fa-brands fa-facebook-f"></i>
-            <i className="fa-brands fa-twitter"></i>
-            <i className="fa-brands fa-linkedin"></i>
-            <i className="fa-brands fa-github"></i>
+        <div class="footer-row">
+          <div class="footer-col">
+            <h4>Info</h4>
+            <ul class="links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Compressions</a></li>
+              <li><a href="#">Customers</a></li>
+              <li><a href="#">Service</a></li>
+              <li><a href="#">Collection</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="links">
+              <li><a href="#">Free Designs</a></li>
+              <li><a href="#">Latest Designs</a></li>
+              <li><a href="#">Themes</a></li>
+              <li><a href="#">Popular Designs</a></li>
+              <li><a href="#">Art Skills</a></li>
+              <li><a href="#">New Uploads</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul class="links">
+              <li><a href="#">Customer Agreement</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">GDPR</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Media Kit</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p>
+              Subscribe to our newsletter for a weekly dose
+              of news, updates, helpful tips, and
+              exclusive offers.
+            </p>
+            <form action="#">
+              <input type="text" placeholder="Your email" required />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div className="icons">
+              <i className="fa-brands fa-facebook-f"></i>
+              <i className="fa-brands fa-twitter"></i>
+              <i className="fa-brands fa-linkedin"></i>
+              <i className="fa-brands fa-github"></i>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 }
